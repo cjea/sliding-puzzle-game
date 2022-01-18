@@ -141,7 +141,6 @@
       pieceCoords[piece].forEach(({ Row, Col }) => {
         let row = document.getElementsByClassName(`row-${Row}`)[0];
         let cell = row.children[Col];
-        if (!cell) debugger;
         cell.style.backgroundColor = rgbToString(COLORS[piece]);
       });
     });
