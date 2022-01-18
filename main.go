@@ -44,32 +44,20 @@ func allPieces() []Piece {
 type Dir string
 
 var (
-	DIR_UL Dir = "up-left"
-	DIR_U  Dir = "up"
-	DIR_UR Dir = "up-right"
-	DIR_R  Dir = "right"
-	DIR_DR Dir = "down-right"
-	DIR_D  Dir = "down"
-	DIR_DL Dir = "down-left"
-	DIR_L  Dir = "left"
+	DIR_U Dir = "up"
+	DIR_R Dir = "right"
+	DIR_D Dir = "down"
+	DIR_L Dir = "left"
 )
 
 func (d Dir) Vec() Coord {
 	switch d {
-	case DIR_UL:
-		return Coord{Row: -1, Col: -1}
 	case DIR_U:
 		return Coord{Row: -1, Col: 0}
-	case DIR_UR:
-		return Coord{Row: -1, Col: 1}
 	case DIR_R:
 		return Coord{Row: 0, Col: 1}
-	case DIR_DR:
-		return Coord{Row: 1, Col: 1}
 	case DIR_D:
 		return Coord{Row: 1, Col: 0}
-	case DIR_DL:
-		return Coord{Row: 1, Col: -1}
 	case DIR_L:
 		return Coord{Row: 0, Col: -1}
 	default:
@@ -79,13 +67,9 @@ func (d Dir) Vec() Coord {
 
 func allDirs() []Dir {
 	return []Dir{
-		// DIR_UL,
 		DIR_U,
-		// DIR_UR,
 		DIR_R,
-		// DIR_DR,
 		DIR_D,
-		// DIR_DL,
 		DIR_L,
 	}
 }
@@ -179,10 +163,6 @@ func (b *Board) MovePiece(piece Piece, dir Dir) error {
 		if len(occupiers) > 1 || (len(occupiers) == 1 && occupiers[0] != piece) {
 			return ErrCollision
 		}
-		// by, taken := b.Taken(newCoord)
-		// if taken && by != piece {
-		// 	return ErrCollision
-		// }
 		newCoords[i] = newCoord
 	}
 	b.PieceCoords[piece] = newCoords
@@ -269,13 +249,9 @@ type Step struct {
 	PrecedingMoves []Move
 }
 
-func Solve(board *Board, moves []Move) *Step {
-	if moves == nil {
-		moves = []Move{}
-	}
-
+func Solve(board *Board) *Step {
 	visited := map[string]struct{}{}
-	queue := []Step{{Board: board, PrecedingMoves: moves}}
+	queue := []Step{{Board: board, PrecedingMoves: []Move{}}}
 
 	for len(queue) > 0 {
 		step := queue[0]
@@ -316,7 +292,7 @@ func Solve(board *Board, moves []Move) *Step {
 func main() {
 	board := INITIAL_BOARD
 	cp := board.Dup()
-	winner := Solve(cp, nil)
+	winner := Solve(cp)
 
 	if winner == nil {
 		fmt.Printf("Couldn't win this one.")
