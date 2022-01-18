@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding puzzle</title>
+  <style>
+    .body {
+      height: 400px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .controls {
+      width: 300px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 1.5em;
+    }
+    .board {
+      outline: solid black;
+      height: 200px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    .row {
+      height: 50px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+    .cell {
+      outline: thin dashed blue;
+      height: 50px;
+      width: 50px;
+    }
+    .ctrl {
+      cursor: pointer
+    }
+  </style>
+</head>
+<body>
+  <h1>Puzzle solution</h1> 
+  <div class="body">
+    <div class="board">
+      <div class="row row-0">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row row-1">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row row-2">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+      <div class="row row-3">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="ctrl forward" onclick="stepFwd()"> (Click me) > </div>
+    </div>
+  </div>
+</body>
+<script src="index.js"></script>
+</html>
