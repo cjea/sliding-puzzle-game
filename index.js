@@ -91,14 +91,6 @@
   window.allMoves = state.PrecedingMoves;
   window.STEP_IDX = 0;
 
-  window.stepBack = function stepBack() {
-    if (STEP_IDX <= 0) return alert("Already at initial state");
-
-    let step = allMoves[--STEP_IDX];
-    applyStep(step);
-    draw();
-  };
-
   window.stepFwd = function stepFwd() {
     if (STEP_IDX > allMoves.length - 1) return alert("Already at final state");
 
